@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row mt-2">
+    <div class="col-md-8">
+      <h4>{{ product?.name }}</h4>
+    </div>
+    <div class="col-md-12">
+      <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <img
+          src="{{ product?.url }}"
+          class="card-img-top"
+          alt="Product Image"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ product?.name }}</h5>
+          Category:<b style="margin-right: 5px"> {{ product?.category }}</b>
+          Color:<b> {{ product?.color }} Rs</b> <br />
+          <b
+            ><fa-icon [icon]="priceIcon"></fa-icon> Price:
+            {{ product?.price }} Rs</b
+          >
+          <div class="row mt-2">
+            <div class="col-md-2" style="display: flex;">
+                  <button (click)="handleQuantity('min')">-</button>
+              <input
+                type="text"
+                name="qty"
+                id="qty"
+                readonly
+                value="{{productQuantity}}"
+                class="form-control"
+                style="border-radius: 0px; text-align: center;"
+                min="1"
+              />
+              <button (click)="handleQuantity('plus')">+</button>
+            </div>
+            <div class="col-md-10">
+              <button class="btn btn-success" *ngIf="cart==true" (click)="AddToCart()">Add to Cart</button>
+              <button class="btn btn-danger" *ngIf="cart==false" (click)="removeToCart(product?.id)">Remove</button>
+              <button class="btn btn-info ml-2">Buy Now</button>
+            </div>
+          </div>
+          <hr />
+          <p class="card-text">
+            {{ product?.description }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

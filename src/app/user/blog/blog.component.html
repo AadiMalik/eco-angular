@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row mt-2">
+    <div class="col-md-8">
+      <h4>Blogs</h4>
+    </div>
+    <div class="col-md-4">
+      <div style="display: flex;">
+            <input type="text" name="search" #seachBlog id="search" ngModel class="form-control" placeholder="Search by title" style="border-radius: 0px;">
+            <button class="btn btn-primary" (click)="searchBlog(seachBlog.value)" style="border-radius: 0px;">Search</button>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <hr />
+    </div>
+  </div>
+  <div class="row mb-2">
+    <div class="col-md-12" style="display: contents">
+      <div *ngFor="let item of categories" style="margin-left: 5px">
+        <span class="badge bg-primary" style="padding: 6px"
+          ><a
+            (click)="blogsByCategory(item.id)"
+            style="text-decoration: none; color: #fff; cursor: pointer"
+            >{{ item.name }}</a
+          ></span
+        >
+      </div>
+    </div>
+    <div class="col-md-12">
+      <hr />
+    </div>
+  </div>
+  
+  <div *ngIf="!blogs?.length">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p>Blogs Not Found!</p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="blogs?.length">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let item of blogs">
+        <div class="card" style="width: 18rem; height: 400px;">
+          <img src="{{ item.url }}" class="card-img-top" style="height: 250px;" alt="Blog Image" />
+          <div class="card-body">
+            <h5 class="card-title">{{ item.title| slice:0:30 }}</h5>
+            <p class="card-text">
+              {{ item.description| slice:0:50 }} <a routerLink="/user/blog/{{item.slug}}" class="text-primary">More>></a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>

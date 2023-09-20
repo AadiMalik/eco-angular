@@ -1,0 +1,165 @@
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-md-4">
+      <form
+        #blogForm="ngForm"
+        (ngSubmit)="saveBlog(blogForm.value); blogForm.resetForm()"
+        class="register-form"
+      >
+        <div class="card">
+          <div class="card-header">
+            <b>Create Blog</b>
+            <p *ngIf="errorMessage != undefined" style="color: red">
+              {{ errorMessage }}
+            </p>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <input
+                type="hidden"
+                id="id"
+                class="form-control"
+                name="id"
+                ngModel="{{ blog?.id }}"
+              />
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="title"
+                    class="form-control"
+                    name="title"
+                    ngModel="{{ blog?.title }}"
+                    placeholder="Blog Title"
+                    #title="ngModel"
+                    required
+                  />
+                  <p *ngIf="title.invalid && title.touched" style="color: red">
+                    Title filed required!
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <select name="category_id" id="category_id" class="form-control" ngModel #category="ngModel" required>
+                        <option value="" selected disabled>--Select Category--</option>
+                        <option *ngFor="let category of categories" value="{{category.id}}">
+                              {{category.name}}
+                        </option>
+                  </select>
+                  <p
+                    *ngIf="category.invalid && category.touched"
+                    style="color: red"
+                  >
+                    Category filed required!
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input
+                    type="url"
+                    id="url"
+                    class="form-control"
+                    name="url"
+                    ngModel="{{ blog?.url }}"
+                    placeholder="Image Url"
+                    #url="ngModel"
+                    required
+                  />
+                  <p *ngIf="url.invalid && url.touched" style="color: red">
+                    Url filed required!
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <textarea
+                    type="text"
+                    id="description"
+                    class="form-control"
+                    name="description"
+                    ngModel="{{ blog?.description }}"
+                    placeholder="description"
+                    #description="ngModel"
+                    required
+                    ></textarea
+                  >
+                  <p
+                    *ngIf="description.invalid && description.touched"
+                    style="color: red"
+                  >
+                    Description filed required!
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <button
+                  type="submit"
+                  [disabled]="blogForm.invalid"
+                  class="form-control btn btn-primary"
+                >
+                 <fa-icon [icon]="save"></fa-icon> Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <b> Blogs </b>
+        </div>
+        <div class="card-body">
+          <p
+            *ngIf="message != undefined"
+            style="
+              background-color: green;
+              padding: 10px;
+              margin-top: 10px;
+              color: #fff;
+            "
+          >
+            {{ message }}
+          </p>
+          <table class="table table-borderd">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Category</th>
+                <th scope="col">Image</th>
+                <th scope="col">Description</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of blogs" style="text-align: center">
+                <td>{{ item?.title }}</td>
+                <td>{{ item?.category_name.name}}</td>
+                <td><img src="{{ item?.url }}" alt="" style="height: 50px; width:50px;"></td>
+                <td>{{ item?.description }}</td>
+                <td>
+                  <a
+                    class="text-warning"
+                    style="cursor: pointer"
+                    (click)="editBlog(item.id)"
+                    ><fa-icon [icon]="edit"></fa-icon></a
+                  >
+                  <a
+                    class="text-danger ml-1"
+                    style="cursor: pointer"
+                    (click)="deleteBlog(item.id)"
+                    ><fa-icon [icon]="delete"></fa-icon></a
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

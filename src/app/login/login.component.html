@@ -1,0 +1,78 @@
+<div class="signup">
+  <div class="register">
+    <div class="form-container">
+      <form
+        #userLogin="ngForm"
+        (ngSubmit)="Login(userLogin.value)"
+        class="login-form"
+      >
+        <h2>Login</h2>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div *ngIf="authError != ''">
+              <p style="background-color: red; color: #fff; padding: 10px">
+                {{ authError }}
+              </p>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                name="email"
+                placeholder="Email"
+                ngModel
+                #email="ngModel"
+                required
+                email
+              />
+              <p *ngIf="email.invalid && email.touched" style="color: red">
+                Email Invalid!
+              </p>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                placeholder="Password"
+                ngModel
+                #password="ngModel"
+                required
+                minlength="4"
+                maxlength="20"
+              />
+              <p
+                *ngIf="password.invalid && password.touched"
+                style="color: red"
+              >
+                Password filed required!
+              </p>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <button
+              type="submit"
+              [disabled]="userLogin.invalid"
+              class="btn btn-primary form-control"
+            >
+              Login
+            </button>
+          </div>
+          <div class="col-md-12">
+            <p class="toggle-form">
+              Not registered? Click here to
+              <a routerLink="/auth/register">register</a>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

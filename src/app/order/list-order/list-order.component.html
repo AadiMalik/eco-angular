@@ -1,0 +1,76 @@
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <b>All Orders </b>
+          <p *ngIf="message != undefined" style="color: red">
+              {{ message }}
+            </p>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-borderd">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Address</th>
+                <th scope="col">Status</th>
+                <th scope="col">Change</th>
+                <th scope="col">Sub Total</th>
+                <th scope="col">Tax</th>
+                <th scope="col">Discount</th>
+                <th scope="col">Delivery</th>
+                <th scope="col">Total</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of orders" style="text-align: center">
+                <td>{{ item?.created_at | date:'short' }}</td>
+                <td>{{ item?.name }}</td>
+                <td>{{ item?.email}}</td>
+                <td>{{ item?.phone}}</td>
+                <td>{{ item?.address }}</td>
+                <td>
+                  <span *ngIf="item.status==1" class="badge badge-primary">Pending</span>
+                  <span *ngIf="item.status==2" class="badge badge-warning">Process</span>
+                  <span *ngIf="item.status==3" class="badge badge-info">On the Way</span>
+                  <span *ngIf="item.status==4" class="badge badge-success">Complete</span>
+                  <span *ngIf="item.status==5" class="badge badge-danger">Cancel</span>
+                </td>
+                <td>
+                  <select [(ngModel)]="defaultSelect" (change)="statusOrder(item.id)" class="form-control" style="width:100px;">
+                        <option [value]="0" selected disabled>--Select Status--</option>
+                        <option [value]="1" [selected]="item.status==1">Pending</option>
+                        <option [value]="2" [selected]="item.status==2">Process</option>
+                        <option [value]="3" [selected]="item.status==3">On the Way</option>
+                        <option [value]="4" [selected]="item.status==4">Complete</option>
+                        <option [value]="5" [selected]="item.status==5">Cancel</option>
+                  </select>
+                </td>
+                <td>{{ item?.sub_total }}</td>
+                <td>{{ item?.tax }}</td>
+                <td>{{ item?.discount }}</td>
+                <td>{{ item?.delivery }}</td>
+                <td>{{ item?.total }}</td>
+                <td>
+                  <a
+                    class="text-danger ml-1"
+                    style="cursor: pointer"
+                    (click)="deleteOrder(item.id)"
+                    ><fa-icon [icon]="delete"></fa-icon></a
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

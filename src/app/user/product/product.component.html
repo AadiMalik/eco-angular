@@ -1,0 +1,52 @@
+<div class="container">
+  <section>
+    <div class="row mt-2">
+      <div class="col-md-8">
+        <h4>Products</h4>
+      </div>
+      <div class="col-md-12">
+        <hr />
+      </div>
+    </div>
+
+    <div *ngIf="!products?.length">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <p>Product Not Found!</p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="products?.length">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let item of products">
+          <div class="card" style="width: 18rem">
+            <img
+              src="{{ item.url }}"
+              style="height: 250px"
+              class="card-img-top"
+              alt="Blog Image"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ item.name | slice : 0 : 30 }}</h5>
+              Category:<b style="margin-right: 5px">
+                {{ item.category | slice : 0 : 30 }}</b
+              >
+              Color:<b> {{ item.color | slice : 0 : 30 }} Rs</b> <br />
+              <b
+                ><fa-icon [icon]="priceIcon"></fa-icon> Price:
+                {{ item.price | slice : 0 : 30 }} Rs</b
+              >
+              <p class="card-text">
+                <a
+                  routerLink="/user/product/{{ item.slug }}"
+                  class="text-primary"
+                  ><fa-icon [icon]="showIcon"></fa-icon>
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

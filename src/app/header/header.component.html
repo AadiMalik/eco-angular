@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #6351ce;">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" routerLink="/">Website</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngSwitch]="userType">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngSwitchCase="'UnAuth'">
+        <li class="nav-item">
+            <a class="nav-link text-white" aria-current="page" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" aria-current="page" routerLink="user/blog">Blog</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" aria-current="page" routerLink="user/products">Products</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" aria-current="page" routerLink="user/cart">Cart({{cartItems}})</a>
+        </li>
+      <li class="nav-item">
+            <a class="nav-link text-white" aria-current="page" routerLink="auth/login"><fa-icon [icon]="unlockIcon"></fa-icon> Login</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngSwitchCase="'Admin'">
+        <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" routerLink="admin/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" routerLink="admin/list-category">Blog Category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" routerLink="admin/list-blogs">Blogs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" routerLink="admin/list-products">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" routerLink="admin/list-orders">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" routerLink="admin/home">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" routerLink="auth/logout">Logout</a>
+        </li>
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+            {{ userName }}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item"  routerLink="auth/logout">Logout</a></li>
+          </ul>
+        </li> -->
+      </ul>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngSwitchCase="'User'">
+        <li class="nav-item">
+            <a class="nav-link text-white" aria-current="page" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" aria-current="page" routerLink="user/blog">Blog</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" aria-current="page" routerLink="user/products">Products</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" aria-current="page" routerLink="user/orders">My Orders</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" aria-current="page" routerLink="user/cart">Cart({{cartItems}})</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" routerLink="auth/logout"><fa-icon [icon]="lockIcon"></fa-icon> Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

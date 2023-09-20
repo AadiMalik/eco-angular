@@ -1,0 +1,51 @@
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <b>My Orders </b>
+        </div>
+        <div class="card-body">
+          <table class="table table-borderd">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Address</th>
+                <th scope="col">Status</th>
+                <th scope="col">Sub Total</th>
+                <th scope="col">Tax</th>
+                <th scope="col">Discount</th>
+                <th scope="col">Delivery</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of orders" style="text-align: center">
+                <td>{{ item?.created_at | date:'short' }}</td>
+                <td>{{ item?.name }}</td>
+                <td>{{ item?.email}}</td>
+                <td>{{ item?.phone}}</td>
+                <td>{{ item?.address }}</td>
+                <td>
+                  <span *ngIf="item.status==1" class="badge badge-primary">Pending</span>
+                  <span *ngIf="item.status==2" class="badge badge-warning">Process</span>
+                  <span *ngIf="item.status==3" class="badge badge-info">On the Way</span>
+                  <span *ngIf="item.status==4" class="badge badge-success">Complete</span>
+                  <span *ngIf="item.status==5" class="badge badge-danger">Cancel</span>
+                </td>
+                <td>{{ item?.sub_total }}</td>
+                <td>{{ item?.tax }}</td>
+                <td>{{ item?.discount }}</td>
+                <td>{{ item?.delivery }}</td>
+                <td>{{ item?.total }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

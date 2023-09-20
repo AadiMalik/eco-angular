@@ -1,0 +1,99 @@
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-md-4">
+      <form
+        #categoryForm="ngForm"
+        (ngSubmit)="saveCategory(categoryForm.value); categoryForm.resetForm()"
+        class="register-form"
+      >
+        <div class="card">
+          <div class="card-header">
+            <b>Create Category</b>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <input
+                type="hidden"
+                id="id"
+                class="form-control"
+                name="id"
+                ngModel="{{ category?.id }}"
+              />
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="name"
+                    class="form-control"
+                    name="name"
+                    ngModel="{{ category?.name }}"
+                    placeholder="Full Name"
+                    #name="ngModel"
+                    required
+                  />
+                  <p *ngIf="name.invalid && name.touched" style="color: red">Name filed required!</p>
+                  <p *ngIf="errorMessage != undefined" style="color: red">
+                    {{ errorMessage }}
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <button type="submit" [disabled]="categoryForm.invalid" class="form-control btn btn-primary">
+                  <fa-icon [icon]="save"></fa-icon> Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <b> Categories </b>
+        </div>
+        <div class="card-body">
+          <p
+            *ngIf="message != undefined"
+            style="
+              background-color: green;
+              padding: 10px;
+              margin-top: 10px;
+              color: #fff;
+            "
+          >
+            {{ message }}
+          </p>
+          <table class="table table-borderd">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of categories" style="text-align: center">
+                <td>{{ item?.name }}</td>
+                <td>
+                  <a
+                    class="text-warning"
+                    style="cursor: pointer" title="Edit"
+                    (click)="editCategory(item.id)"
+                    ><fa-icon [icon]="edit"></fa-icon></a
+                  >
+                  <a
+                    class="text-danger ml-1"
+                    style="cursor: pointer" title="Delete"
+                    (click)="deleteCategory(item.id)"
+                    ><fa-icon [icon]="delete"></fa-icon>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

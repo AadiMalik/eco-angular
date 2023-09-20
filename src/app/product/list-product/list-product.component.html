@@ -1,0 +1,207 @@
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-md-4">
+      <form
+        #productForm="ngForm"
+        (ngSubmit)="saveProduct(productForm.value); productForm.resetForm()"
+        class="register-form"
+      >
+        <div class="card">
+          <div class="card-header">
+            <b>Create Product</b>
+            <p *ngIf="errorMessage != undefined" style="color: red">
+              {{ errorMessage }}
+            </p>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <input
+                type="hidden"
+                id="id"
+                class="form-control"
+                name="id"
+                ngModel="{{ product?.id }}"
+              />
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="name"
+                    class="form-control"
+                    name="name"
+                    ngModel="{{ product?.name }}"
+                    placeholder="Full Name"
+                    #name="ngModel"
+                    required
+                  />
+                  <p *ngIf="name.invalid && name.touched" style="color: red">
+                    Name filed required!
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="price"
+                    class="form-control"
+                    name="price"
+                    ngModel="{{ product?.price }}"
+                    placeholder="Price"
+                    #price="ngModel"
+                    required
+                  />
+                  <p *ngIf="price.invalid && price.touched" style="color: red">
+                    Price filed required!
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="category"
+                    class="form-control"
+                    name="category"
+                    ngModel="{{ product?.category }}"
+                    placeholder="Category"
+                    #category="ngModel"
+                    required
+                  />
+                  <p
+                    *ngIf="category.invalid && category.touched"
+                    style="color: red"
+                  >
+                    Category filed required!
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="color"
+                    class="form-control"
+                    name="color"
+                    ngModel="{{ product?.color }}"
+                    placeholder="Color"
+                    #color="ngModel"
+                    required
+                  />
+                  <p *ngIf="color.invalid && color.touched" style="color: red">
+                    Color filed required!
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="url"
+                    class="form-control"
+                    name="url"
+                    ngModel="{{ product?.url }}"
+                    placeholder="Image Url"
+                    #url="ngModel"
+                    required
+                  />
+                  <p *ngIf="url.invalid && url.touched" style="color: red">
+                    Url filed required!
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <textarea
+                    type="text"
+                    id="description"
+                    class="form-control"
+                    name="description"
+                    ngModel="{{ product?.description }}"
+                    placeholder="description"
+                    #description="ngModel"
+                    required
+                    ></textarea
+                  >
+                  <p
+                    *ngIf="description.invalid && description.touched"
+                    style="color: red"
+                  >
+                    Description filed required!
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <button
+                  type="submit"
+                  [disabled]="productForm.invalid"
+                  class="form-control btn btn-primary"
+                >
+                 <fa-icon [icon]="save"></fa-icon> Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <b> Products </b>
+        </div>
+        <div class="card-body">
+          <p
+            *ngIf="message != undefined"
+            style="
+              background-color: green;
+              padding: 10px;
+              margin-top: 10px;
+              color: #fff;
+            "
+          >
+            {{ message }}
+          </p>
+          <table class="table table-borderd">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Category</th>
+                <th scope="col">Color</th>
+                <th scope="col">Image</th>
+                <th scope="col">Description</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of products" style="text-align: center">
+                <td>{{ item?.name }}</td>
+                <td>{{ item?.price }}</td>
+                <td>{{ item?.category }}</td>
+                <td>{{ item?.color }}</td>
+                <td><img src="{{ item?.url }}" alt="" style="height: 50px; width:50px;"></td>
+                <td>{{ item?.description }}</td>
+                <td>
+                  <a
+                    class="text-warning"
+                    style="cursor: pointer"
+                    (click)="editProduct(item.id)"
+                    ><fa-icon [icon]="edit"></fa-icon></a
+                  >
+                  <a
+                    class="text-danger ml-1"
+                    style="cursor: pointer"
+                    (click)="deleteProduct(item.id)"
+                    ><fa-icon [icon]="delete"></fa-icon></a
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

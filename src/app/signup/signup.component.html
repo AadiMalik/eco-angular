@@ -1,0 +1,33 @@
+<div class="signup">
+  <div class="register">
+    <div class="form-container">
+      <form #userRegister="ngForm" (ngSubmit)="Register(userRegister.value)" class="register-form">
+        <h2>Register</h2>
+        <div class="row">
+            <div class="col-md-12">
+                  <div class="form-group">
+                        <input type="text" id="fullname" class="form-control" name="name" ngModel placeholder="Full Name" #name="ngModel" required />
+                        <p *ngIf="name.invalid && name.touched" style="color: red">Name filed required!</p>
+                  </div>
+            </div>
+            <div class="col-md-12">
+                  <div class="form-group">
+                        <input type="email" id="email" class="form-control" name="email" ngModel placeholder="Email" #email="ngModel" required email />
+                        <p *ngIf="email.invalid && email.touched" style="color: red">Email filed required!</p>
+                  </div>
+            </div>
+            <div class="col-md-12">
+                  <div class="form-group">
+                        <input type="password" class="form-control" id="password" name="password" ngModel placeholder="Password" #password="ngModel" required minlength="4" maxlength="20" />
+                        <p *ngIf="password.invalid && password.touched" style="color: red">Password filed required!</p>
+                  </div>
+            </div>
+            <div class="col-md-12">
+                  <button type="submit" [disabled]="userRegister.invalid" class="form-control btn btn-primary">Register</button>
+            </div>
+        </div>
+        Already registered? Click here to <a routerLink="/auth/login">login</a>
+      </form>
+    </div>
+  </div>
+</div>
