@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Order } from 'src/app/data-type/order';
+import { Dashbaord } from 'src/app/data-type/dashboard';
+import { Order, OrderDetail } from 'src/app/data-type/order';
 import { Cart, Product } from 'src/app/data-type/product';
 
 @Injectable({
@@ -107,5 +108,14 @@ export class ProductService {
     return this.http.get(
       'http://localhost/EcoApi/api/status-order/' + id + '/' + status_id
     );
+  }
+  getOrderDetail(id: number) {
+    return this.http.get<OrderDetail>(
+      'http://localhost/EcoApi/api/order-detail/' + id
+    );
+  }
+
+  getDasboard() {
+    return this.http.get<Dashbaord>('http://localhost/EcoApi/api/admin-dashboard');
   }
 }

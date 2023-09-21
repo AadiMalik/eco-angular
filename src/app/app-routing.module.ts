@@ -17,6 +17,8 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { OrderComponent } from './user/order/order.component';
 import { ListOrderComponent } from './order/list-order/list-order.component';
+import { ListOrderDetailComponent } from './order/list-order-detail/list-order-detail.component';
+import { OrderDetailComponent } from './user/order-detail/order-detail.component';
 
 const routes: Routes = [
   {
@@ -44,6 +46,11 @@ const routes: Routes = [
   {
     path: 'user/orders',
     component: OrderComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'user/orders/:query',
+    component: OrderDetailComponent,
     canActivate: [authGuard],
   },
   {
@@ -89,6 +96,11 @@ const routes: Routes = [
   {
     path: 'admin/list-orders',
     component: ListOrderComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'admin/list-orders/:query',
+    component: ListOrderDetailComponent,
     canActivate: [authGuard],
   },
 ];

@@ -15,6 +15,13 @@
   </div>
   <div class="row mb-2">
     <div class="col-md-12" style="display: contents">
+      <span class="badge bg-primary" style="padding: 6px; margin-left: 5px"
+          ><a
+            (click)="blogsByCategory(0)"
+            style="text-decoration: none; color: #fff; cursor: pointer"
+            >All</a
+          ></span
+        >
       <div *ngFor="let item of categories" style="margin-left: 5px">
         <span class="badge bg-primary" style="padding: 6px"
           ><a
@@ -39,7 +46,7 @@
   </div>
   <div *ngIf="blogs?.length">
     <div class="row">
-      <div class="col-md-4" *ngFor="let item of blogs">
+      <div class="col-md-4 mt-3" *ngFor="let item of blogs">
         <div class="card" style="width: 18rem; height: 400px;">
           <img src="{{ item.url }}" class="card-img-top" style="height: 250px;" alt="Blog Image" />
           <div class="card-body">

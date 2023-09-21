@@ -10,13 +10,13 @@
             <a class="nav-link text-white" aria-current="page" routerLink="/">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" aria-current="page" routerLink="user/blog">Blog</a>
+            <a class="nav-link text-white" aria-current="page" routerLink="user/blog">Blogs</a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-white" aria-current="page" routerLink="user/products">Products</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" aria-current="page" routerLink="user/cart">Cart({{cartItems}})</a>
+            <a class="nav-link text-white" aria-current="page" [routerLink]="cartItems>0?'user/cart':null">Cart({{cartItems}})</a>
         </li>
       <li class="nav-item">
             <a class="nav-link text-white" aria-current="page" routerLink="auth/login"><fa-icon [icon]="unlockIcon"></fa-icon> Login</a>
@@ -60,7 +60,7 @@
             <a class="nav-link text-white" aria-current="page" routerLink="/">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" aria-current="page" routerLink="user/blog">Blog</a>
+            <a class="nav-link text-white" aria-current="page" routerLink="user/blog">Blogs</a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-white" aria-current="page" routerLink="user/products">Products</a>
@@ -69,7 +69,7 @@
             <a class="nav-link text-white" aria-current="page" routerLink="user/orders">My Orders</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" aria-current="page" routerLink="user/cart">Cart({{cartItems}})</a>
+            <a class="nav-link text-white" aria-current="page" [routerLink]="cartItems>0?'user/cart':null">Cart({{cartItems}})</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-white" aria-current="page" routerLink="auth/logout"><fa-icon [icon]="lockIcon"></fa-icon> Logout</a>

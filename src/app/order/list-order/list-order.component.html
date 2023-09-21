@@ -13,6 +13,7 @@
             <table class="table table-borderd">
             <thead>
               <tr>
+                <th scope="col">Order #</th>
                 <th scope="col">Date</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
@@ -30,6 +31,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let item of orders" style="text-align: center">
+                <td>{{ item?.id }}</td>
                 <td>{{ item?.created_at | date:'short' }}</td>
                 <td>{{ item?.name }}</td>
                 <td>{{ item?.email}}</td>
@@ -59,11 +61,17 @@
                 <td>{{ item?.total }}</td>
                 <td>
                   <a
+                  routerLink="/admin/list-orders/{{ item.id }}"
+                  class="text-primary"
+                  ><fa-icon [icon]="showIcon"></fa-icon>
+                </a>
+                  <a
                     class="text-danger ml-1"
                     style="cursor: pointer"
                     (click)="deleteOrder(item.id)"
                     ><fa-icon [icon]="delete"></fa-icon></a
                   >
+                  
                 </td>
               </tr>
             </tbody>

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Order } from 'src/app/data-type/order';
 import { ProductService } from 'src/app/service/product/product.service';
-import { faTrash, faEdit, faSave } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEye } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-list-order',
@@ -13,7 +13,8 @@ export class ListOrderComponent {
   orders: any | Order[];
   message: undefined | string;
   delete = faTrash;
-  defaultSelect=0;
+  showIcon = faEye;
+  defaultSelect = 0;
   constructor(
     private product_service: ProductService,
     private router: Router
@@ -40,7 +41,7 @@ export class ListOrderComponent {
   }
   statusOrder(id: number) {
     let status_id = this.defaultSelect;
-    this.product_service.statusOrder(id,status_id).subscribe((response) => {
+    this.product_service.statusOrder(id, status_id).subscribe((response) => {
       if (response) {
         this.message = 'Order Status Change Successfully!';
         this.listOrders();

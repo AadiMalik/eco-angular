@@ -1,0 +1,42 @@
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <b> Order Detail </b>
+        </div>
+        <div class="card-body">
+          <table class="table table-borderd">
+            <thead>
+              <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Order #</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Category</th>
+                <th scope="col">Color</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of order_details" style="text-align: center">
+                <td><img src="{{ item?.url }}" alt="" style="height: 50px; width:50px;"></td>
+                <td>{{ item?.order_id }}</td>
+                <td>{{ item?.name }}</td>
+                <td>{{ item?.price }}</td>
+                <td>{{ item?.quantity }}</td>
+                <td>{{ item?.category }}</td>
+                <td>{{ item?.color }}</td>
+                <td>{{ item?.price * item?.quantity }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer">
+            <a routerLink="/user/orders" class="btn btn-info">Back to Orders</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

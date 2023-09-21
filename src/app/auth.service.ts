@@ -27,7 +27,7 @@ export class AuthService {
       .subscribe((result) => {
         this.isLogin.next(true);
         localStorage.setItem('auth-user', JSON.stringify(result.body));
-        this.router.navigate(['admin/home']);
+        this.router.navigate(['auth/login']);
         return result;
       });
   }

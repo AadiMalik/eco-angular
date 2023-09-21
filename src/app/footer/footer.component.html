@@ -49,7 +49,7 @@
           <!-- Grid column -->
           <div class="col-md-3 col-lg-4 col-xl-3 text-justify mb-4">
             <!-- Content -->
-            <h6 class="text-uppercase fw-bold">Company name</h6>
+            <h6 class="text-uppercase fw-bold">Website</h6>
             <hr
                 class="mb-4 mt-0 d-inline-block mx-auto"
                 style="width: 60px; background-color: #7c4dff; height: 2px"
@@ -63,8 +63,7 @@
           <!-- Grid column -->
 
           <!-- Grid column -->
-          <div class="col-md-2 col-lg-2 col-xl-2 text-justify mx-auto mb-4">
-            <!-- Links -->
+          <!-- <div class="col-md-2 col-lg-2 col-xl-2 text-justify mx-auto mb-4">
             <h6 class="text-uppercase fw-bold">Products</h6>
             <hr
                 class="mb-4 mt-0 d-inline-block mx-auto"
@@ -82,7 +81,7 @@
             <p>
               <a href="#!" class="text-white">Bootstrap Angular</a>
             </p>
-          </div>
+          </div> -->
           <!-- Grid column -->
 
           <!-- Grid column -->
@@ -94,16 +93,31 @@
                 style="width: 60px; background-color: #7c4dff; height: 2px"
                 />
             <p>
-              <a href="#!" class="text-white">Your Account</a>
+              <a routerLink="/" class="text-white" *ngIf="userType=='UnAuth' || userType=='User'">Home</a>
             </p>
             <p>
-              <a href="#!" class="text-white">Become an Affiliate</a>
+              <a routerLink="user/blog" class="text-white" *ngIf="userType=='UnAuth' || userType=='User'">Blogs</a>
             </p>
             <p>
-              <a href="#!" class="text-white">Shipping Rates</a>
+              <a routerLink="user/products" class="text-white" *ngIf="userType=='UnAuth' || userType=='User'">Products</a>
             </p>
             <p>
-              <a href="#!" class="text-white">Help</a>
+              <a routerLink="user/orders" class="text-white" *ngIf="userType=='User'">Orders</a>
+            </p>
+            <p>
+              <a routerLink="auth/login" class="text-white" *ngIf="userType=='UnAuth'">Login</a>
+            </p>
+            <p>
+              <a routerLink="admin/list-category" class="text-white" *ngIf="userType=='Admin'">Blog Category</a>
+            </p>
+            <p>
+              <a routerLink="admin/list-blogs" class="text-white" *ngIf="userType=='Admin'">Blogs</a>
+            </p>
+            <p>
+              <a routerLink="admin/list-products" class="text-white" *ngIf="userType=='Admin'">Products</a>
+            </p>
+            <p>
+              <a routerLink="auth/logout" class="text-white" *ngIf="userType=='Admin' || userType=='User'">Logout</a>
             </p>
           </div>
           <!-- Grid column -->
