@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ProductService } from './service/product/product.service';
+import { environment } from './../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,8 @@ import { ProductService } from './service/product/product.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  heading = environment.title;
+  apiURL = environment.apiURL;
   constructor(
     private router: Router,
     private product_service: ProductService

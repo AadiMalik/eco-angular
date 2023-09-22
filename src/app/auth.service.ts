@@ -6,11 +6,14 @@ import { Signup } from './data-type/signup';
 import { Login } from './data-type/login';
 import { Cart, Product } from './data-type/product';
 import { ProductService } from './service/product/product.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  heading = environment.title;
+  apiURL = environment.apiURL;
   isLogin = new BehaviorSubject<boolean>(false);
   isLoginError = new EventEmitter<boolean>(false);
 
@@ -21,7 +24,7 @@ export class AuthService {
   ) {}
   userRegister(data: Signup) {
     this.http
-      .post('http://localhost/EcoApi/api/register', data, {
+      .post(this.apiURL + 'register', data, {
         observe: 'response',
       })
       .subscribe((result) => {
@@ -33,7 +36,7 @@ export class AuthService {
   }
   userLogin(data: Login) {
     this.http
-      .post('http://localhost/EcoApi/api/login', data, { observe: 'response' })
+      .post(this.apiURL + 'login', data, { observe: 'response' })
       .subscribe((result: any) => {
         if (result.body.success == true) {
           this.isLogin.next(true);
