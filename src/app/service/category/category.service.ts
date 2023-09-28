@@ -14,13 +14,13 @@ export class CategoryService {
   getCategory() {
     return this.http.get<Category[]>(this.apiURL + 'list-category');
   }
-  addCategory(data: Category) {
+  addCategory(data: any) {
     return this.http.post(this.apiURL + 'add-category', data);
   }
   getCategoryById(id: number) {
     return this.http.get<Category>(this.apiURL + 'edit-category/' + id);
   }
-  updateCategory(data: Category) {
+  updateCategory(data: any) {
     return this.http.post(this.apiURL + 'update-category', data);
   }
   deleteCategoryById(id: number) {

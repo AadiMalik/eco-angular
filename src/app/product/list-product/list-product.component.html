@@ -2,26 +2,18 @@
   <div class="row">
     <div class="col-md-4">
       <form
-        #productForm="ngForm"
-        (ngSubmit)="saveProduct(productForm.value); productForm.resetForm()"
+        [formGroup]="productForm" (ngSubmit)="saveProduct(product?.id)"
         class="register-form"
       >
         <div class="card">
           <div class="card-header">
-            <b>Create Product</b>
+            <b>{{heading}}</b>
             <p *ngIf="errorMessage != undefined" style="color: red">
               {{ errorMessage }}
             </p>
           </div>
           <div class="card-body">
             <div class="row">
-              <input
-                type="hidden"
-                id="id"
-                class="form-control"
-                name="id"
-                ngModel="{{ product?.id }}"
-              />
 
               <div class="col-md-12">
                 <div class="form-group">
@@ -30,12 +22,11 @@
                     id="name"
                     class="form-control"
                     name="name"
-                    ngModel="{{ product?.name }}"
+                    formControlName="name"
+                    value="{{ product?.name }}"
                     placeholder="Full Name"
-                    #name="ngModel"
-                    required
                   />
-                  <p *ngIf="name.invalid && name.touched" style="color: red">
+                  <p *ngIf="productForm.controls['name'].invalid && productForm.controls['name'].touched" style="color: red">
                     Name filed required!
                   </p>
                 </div>
@@ -47,12 +38,11 @@
                     id="price"
                     class="form-control"
                     name="price"
-                    ngModel="{{ product?.price }}"
+                    formControlName="price"
+                    value="{{ product?.price }}"
                     placeholder="Price"
-                    #price="ngModel"
-                    required
                   />
-                  <p *ngIf="price.invalid && price.touched" style="color: red">
+                  <p *ngIf="productForm.controls['price'].invalid && productForm.controls['price'].touched" style="color: red">
                     Price filed required!
                   </p>
                 </div>
@@ -64,13 +54,12 @@
                     id="category"
                     class="form-control"
                     name="category"
-                    ngModel="{{ product?.category }}"
+                    formControlName="category"
+                    value="{{ product?.category }}"
                     placeholder="Category"
-                    #category="ngModel"
-                    required
                   />
                   <p
-                    *ngIf="category.invalid && category.touched"
+                    *ngIf="productForm.controls['category'].invalid && productForm.controls['category'].touched"
                     style="color: red"
                   >
                     Category filed required!
@@ -84,12 +73,11 @@
                     id="color"
                     class="form-control"
                     name="color"
-                    ngModel="{{ product?.color }}"
+                    formControlName="color"
+                    value="{{ product?.color }}"
                     placeholder="Color"
-                    #color="ngModel"
-                    required
                   />
-                  <p *ngIf="color.invalid && color.touched" style="color: red">
+                  <p *ngIf="productForm.controls['color'].invalid && productForm.controls['color'].touched" style="color: red">
                     Color filed required!
                   </p>
                 </div>
@@ -101,12 +89,11 @@
                     id="url"
                     class="form-control"
                     name="url"
-                    ngModel="{{ product?.url }}"
+                    formControlName="url"
+                    value="{{ product?.url }}"
                     placeholder="Image Url"
-                    #url="ngModel"
-                    required
                   />
-                  <p *ngIf="url.invalid && url.touched" style="color: red">
+                  <p *ngIf="productForm.controls['url'].invalid && productForm.controls['url'].touched" style="color: red">
                     Url filed required!
                   </p>
                 </div>
@@ -118,14 +105,13 @@
                     id="description"
                     class="form-control"
                     name="description"
-                    ngModel="{{ product?.description }}"
+                    formControlName="description"
+                    value="{{ product?.description }}"
                     placeholder="description"
-                    #description="ngModel"
-                    required
                     ></textarea
                   >
                   <p
-                    *ngIf="description.invalid && description.touched"
+                    *ngIf="productForm.controls['description'].invalid && productForm.controls['description'].touched"
                     style="color: red"
                   >
                     Description filed required!
@@ -135,11 +121,16 @@
               <div class="col-md-12">
                 <button
                   type="submit"
-                  [disabled]="productForm.invalid"
                   class="form-control btn btn-primary"
                 >
-                 <fa-icon [icon]="save"></fa-icon> Save
+                 <fa-icon [icon]="save"></fa-icon> {{button}}
                 </button>
+                <a
+                  (click)="resetForm()"
+                  class="form-control btn btn-secondary mt-2"
+                >
+                 <fa-icon [icon]="reset"></fa-icon> Reset
+                </a>
               </div>
             </div>
           </div>

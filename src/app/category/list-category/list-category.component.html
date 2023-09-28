@@ -2,24 +2,15 @@
   <div class="row">
     <div class="col-md-4">
       <form
-        #categoryForm="ngForm"
-        (ngSubmit)="saveCategory(categoryForm.value); categoryForm.resetForm()"
+        [formGroup]="categoryForm" (ngSubmit)="saveCategory(category?.id)"
         class="register-form"
       >
         <div class="card">
           <div class="card-header">
-            <b>Create Category</b>
+            <b>{{heading}}</b>
           </div>
           <div class="card-body">
             <div class="row">
-              <input
-                type="hidden"
-                id="id"
-                class="form-control"
-                name="id"
-                ngModel="{{ category?.id }}"
-              />
-
               <div class="col-md-12">
                 <div class="form-group">
                   <input
@@ -27,21 +18,25 @@
                     id="name"
                     class="form-control"
                     name="name"
-                    ngModel="{{ category?.name }}"
-                    placeholder="Full Name"
-                    #name="ngModel"
-                    required
+                    formControlName="name"
+                    value="{{ category?.name }}"
                   />
-                  <p *ngIf="name.invalid && name.touched" style="color: red">Name filed required!</p>
+                  <p *ngIf="categoryForm.controls['name'].invalid && categoryForm.controls['name'].touched" style="color: red">Name filed required!</p>
                   <p *ngIf="errorMessage != undefined" style="color: red">
                     {{ errorMessage }}
                   </p>
                 </div>
               </div>
               <div class="col-md-12">
-                <button type="submit" [disabled]="categoryForm.invalid" class="form-control btn btn-primary">
-                  <fa-icon [icon]="save"></fa-icon> Save
+                <button type="submit" class="form-control btn btn-primary">
+                  <fa-icon [icon]="save"></fa-icon> {{button}}
                 </button>
+                <a
+                  (click)="resetForm()"
+                  class="form-control btn btn-secondary mt-2"
+                >
+                 <fa-icon [icon]="reset"></fa-icon> Reset
+                </a>
               </div>
             </div>
           </div>

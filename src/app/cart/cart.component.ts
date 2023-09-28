@@ -31,7 +31,6 @@ export class CartComponent {
     this.product_service
       .getCurrentCartByUserId(userId)
       .subscribe((response) => {
-        console.log(response);
         this.carts = response;
         let sub_total=0;
         let tax = 0;

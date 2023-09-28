@@ -14,13 +14,13 @@ export class BlogService {
   getBlogs() {
     return this.http.get<Blog[]>(this.apiURL + 'list-blogs');
   }
-  addBlog(data: Blog) {
+  addBlog(data: any) {
     return this.http.post(this.apiURL + 'add-blog', data);
   }
   getBlogById(id: number) {
     return this.http.get<Blog>(this.apiURL + 'edit-blog/' + id);
   }
-  updateBlog(data: Blog) {
+  updateBlog(data: any) {
     return this.http.post(this.apiURL + 'update-blog', data);
   }
   deleteBlogById(id: number) {

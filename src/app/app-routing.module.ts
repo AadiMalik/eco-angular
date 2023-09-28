@@ -19,6 +19,8 @@ import { OrderComponent } from './user/order/order.component';
 import { ListOrderComponent } from './order/list-order/list-order.component';
 import { ListOrderDetailComponent } from './order/list-order-detail/list-order-detail.component';
 import { OrderDetailComponent } from './user/order-detail/order-detail.component';
+import { UsersComponent } from './users/users.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -70,12 +72,21 @@ const routes: Routes = [
     component: SignupComponent,
   },
   {
+    path: 'auth/profile',
+    component: ProfileComponent,
+  },
+  {
     path: 'auth/logout',
     component: LogoutComponent,
   },
   {
     path: 'admin/home',
     component: HomeComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'admin/list-users',
+    component: UsersComponent,
     canActivate: [authGuard],
   },
   {

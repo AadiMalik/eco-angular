@@ -5,9 +5,9 @@ import { inject } from '@angular/core';
 export const authGuard: CanActivateFn = (route, state) => {
   const oauthService: AuthService = inject(AuthService);
 
-  let checkAuth = oauthService.reloadAuth;
-  if (!checkAuth) {
-    return false;
+  if (localStorage.getItem('auth-user')) {
+    return true;
   }
-  return true;
+  oauthService.redirectLogin();
+  return false;
 };

@@ -7,39 +7,54 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngSwitch]="userType">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngSwitchCase="'UnAuth'">
         <li class="nav-item">
-            <a class="nav-link text-white" aria-current="page" routerLink="/">Home</a>
+            <a class="nav-link text-white" aria-current="page" routerLink="/" routerLinkActive="active" 
+            [routerLinkActiveOptions]={exact:true}>Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" aria-current="page" routerLink="user/blog">Blogs</a>
+            <a class="nav-link text-white" aria-current="page" routerLink="user/blog" routerLinkActive="active" 
+            [routerLinkActiveOptions]={exact:true}>Blogs</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" aria-current="page" routerLink="user/products">Products</a>
+            <a class="nav-link text-white" aria-current="page" routerLink="user/products" routerLinkActive="active" 
+            [routerLinkActiveOptions]={exact:true}>Products</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" aria-current="page" [routerLink]="cartItems>0?'user/cart':null">Cart({{cartItems}})</a>
+            <a class="nav-link text-white" aria-current="page" [routerLink]="cartItems>0?'user/cart':null" routerLinkActive="active" 
+            [routerLinkActiveOptions]={exact:true}>Cart({{cartItems}})</a>
         </li>
       <li class="nav-item">
-            <a class="nav-link text-white" aria-current="page" routerLink="auth/login"><fa-icon [icon]="unlockIcon"></fa-icon> Login</a>
+            <a class="nav-link text-white" aria-current="page" routerLink="auth/login" routerLinkActive="active" 
+            [routerLinkActiveOptions]={exact:true}><fa-icon [icon]="unlockIcon"></fa-icon> Login</a>
         </li>
       </ul>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngSwitchCase="'Admin'">
         <li class="nav-item">
-          <a class="nav-link text-white" aria-current="page" routerLink="admin/home">Home</a>
+          <a class="nav-link text-white" aria-current="page" routerLink="admin/home" routerLinkActive="active" 
+            [routerLinkActiveOptions]={exact:true}>Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" aria-current="page" routerLink="admin/list-category">Blog Category</a>
+          <a class="nav-link text-white" aria-current="page" routerLink="admin/list-users" routerLinkActive="active" 
+            [routerLinkActiveOptions]={exact:true}>Users</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" aria-current="page" routerLink="admin/list-blogs">Blogs</a>
+          <a class="nav-link text-white" aria-current="page" routerLink="admin/list-category" routerLinkActive="active" 
+            [routerLinkActiveOptions]={exact:true}>Blog Category</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" aria-current="page" routerLink="admin/list-products">Products</a>
+          <a class="nav-link text-white" aria-current="page" routerLink="admin/list-blogs" routerLinkActive="active" 
+            [routerLinkActiveOptions]={exact:true}>Blogs</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" aria-current="page" routerLink="admin/list-orders">Orders</a>
+          <a class="nav-link text-white" aria-current="page" routerLink="admin/list-products" routerLinkActive="active" 
+            [routerLinkActiveOptions]={exact:true}>Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" aria-current="page" routerLink="admin/home">Profile</a>
+          <a class="nav-link text-white" aria-current="page" routerLink="admin/list-orders" routerLinkActive="active" 
+            [routerLinkActiveOptions]={exact:true}>Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" routerLink="auth/profile" routerLinkActive="active" 
+            [routerLinkActiveOptions]={exact:true}>Profile</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-white" aria-current="page" routerLink="auth/logout">Logout</a>
@@ -57,19 +72,28 @@
       </ul>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngSwitchCase="'User'">
         <li class="nav-item">
-            <a class="nav-link text-white" aria-current="page" routerLink="/">Home</a>
+            <a class="nav-link text-white" aria-current="page" routerLink="/" routerLinkActive="active" 
+            [routerLinkActiveOptions]={exact:true}>Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" aria-current="page" routerLink="user/blog">Blogs</a>
+            <a class="nav-link text-white" aria-current="page" routerLink="user/blog" routerLinkActive="active" 
+            [routerLinkActiveOptions]={exact:true}>Blogs</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" aria-current="page" routerLink="user/products">Products</a>
+            <a class="nav-link text-white" aria-current="page" routerLink="user/products" routerLinkActive="active" 
+            [routerLinkActiveOptions]={exact:true}>Products</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" aria-current="page" routerLink="user/orders">My Orders</a>
+            <a class="nav-link text-white" aria-current="page" routerLink="user/orders" routerLinkActive="active" 
+            [routerLinkActiveOptions]={exact:true}>My Orders</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" aria-current="page" [routerLink]="cartItems>0?'user/cart':null">Cart({{cartItems}})</a>
+            <a class="nav-link text-white" aria-current="page" [routerLink]="cartItems>0?'user/cart':null" routerLinkActive="active" 
+            [routerLinkActiveOptions]={exact:true}>Cart({{cartItems}})</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" routerLink="auth/profile" routerLinkActive="active" 
+            [routerLinkActiveOptions]={exact:true}>Profile</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-white" aria-current="page" routerLink="auth/logout"><fa-icon [icon]="lockIcon"></fa-icon> Logout</a>

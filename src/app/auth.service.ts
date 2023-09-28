@@ -64,11 +64,15 @@ export class AuthService {
     this.product_service.cartData.emit([]);
   }
   reloadAuth() {
-    if (localStorage.getItem('auth-user')) {
+    console.log(localStorage.getItem('auth-user')?.length != 0);
+    if (localStorage.getItem('auth-user')?.length!=0) {
       return true;
     } else {
       return false;
     }
+  }
+  redirectLogin(){
+    this.router.navigate(['auth/login']);
   }
 
   localCartToDbCart() {

@@ -1,8 +1,7 @@
 <div class="container mt-2">
   <div class="row">
     <div class="col-md-4">
-      <form
-         [formGroup]="blogForm" (ngSubmit)="saveBlog(blog?.id)"
+      <form [formGroup]="userForm" (ngSubmit)="saveUser(user?.id)"
         class="register-form"
       >
         <div class="card">
@@ -14,72 +13,64 @@
           </div>
           <div class="card-body">
             <div class="row">
-
               <div class="col-md-12">
                 <div class="form-group">
                   <input
                     type="text"
-                    id="title"
+                    name="name"
                     class="form-control"
-                    name="title"
-                    formControlName="title"
-                    value="{{ blog?.title }}"
-                    placeholder="Blog Title"
+                    formControlName="name"
+                    value="{{ user?.name }}"
+                    placeholder="Enter User Name"
                   />
-                  <p *ngIf="blogForm.controls['title'].invalid && blogForm.controls['title'].touched" style="color: red">
-                    Title filed required!
+                  <p *ngIf="userForm.controls['name'].invalid && userForm.controls['name'].touched" style="color: red">
+                    Name filed required!
+                  </p>
+                </div>
+              </div>
+              
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    formControlName="email"
+                    value="{{ user?.email }}"
+                    placeholder="Enter Email"
+                  />
+                  <p *ngIf="userForm.controls['email']?.invalid && userForm.controls['email']?.touched" style="color: red">
+                    Email filed required!
                   </p>
                 </div>
               </div>
               <div class="col-md-12">
                 <div class="form-group">
-                  <select name="category_id" id="category_id" formControlName="category_id" class="form-control">
-                        <option value="" selected disabled>--Select Category--</option>
-                        <option *ngFor="let category of categories" value="{{category.id}}" [selected]="category.id==blog?.category_id">
-                              {{category.name}}
-                        </option>
+                  <input
+                    type="password"
+                    name="password"
+                    class="form-control"
+                    formControlName="password"
+                    value="{{ user?.password }}"
+                    placeholder="Enter Password"
+                  />
+                  <p *ngIf="userForm.controls['password'].invalid && userForm.controls['password'].touched" style="color: red">
+                    Password filed required!
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <select formControlName="role" name="role" class="form-control">
+                        <option value="" selected disabled>--Select Role--</option>
+                        <option value="2" [selected]="user && user.role==2">User</option>
+                        <option value="1" [selected]="user && user.role==1">Admin</option>
                   </select>
                   <p
-                    *ngIf="blogForm.controls['category_id'].invalid && blogForm.controls['category_id'].touched"
+                    *ngIf="userForm.controls['role'].invalid && userForm.controls['role'].touched"
                     style="color: red"
                   >
-                    Category filed required!
-                  </p>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="form-group">
-                  <input
-                    type="url"
-                    id="url"
-                    class="form-control"
-                    name="url"
-                    formControlName="url"
-                    value="{{ blog?.url }}"
-                    placeholder="Image Url"
-                  />
-                  <p *ngIf="blogForm.controls['url'].invalid && blogForm.controls['url'].touched" style="color: red">
-                    Url filed required!
-                  </p>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="form-group">
-                  <textarea
-                    type="text"
-                    id="description"
-                    class="form-control"
-                    name="description"
-                    formControlName="description"
-                    value="{{ blog?.description }}"
-                    placeholder="description"
-                    ></textarea
-                  >
-                  <p
-                    *ngIf="blogForm.controls['description'].invalid && blogForm.controls['description'].touched"
-                    style="color: red"
-                  >
-                    Description filed required!
+                    Role filed required!
                   </p>
                 </div>
               </div>
@@ -105,7 +96,7 @@
     <div class="col-md-8">
       <div class="card">
         <div class="card-header">
-          <b> Blogs </b>
+          <b> Users </b>
         </div>
         <div class="card-body">
           <p
@@ -121,31 +112,32 @@
           </p>
           <table class="table table-borderd">
             <thead>
-              <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Category</th>
-                <th scope="col">Image</th>
-                <th scope="col">Description</th>
+              <tr style="text-align: center">
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of blogs" style="text-align: center">
-                <td>{{ item?.title }}</td>
-                <td>{{ item?.category_name.name}}</td>
-                <td><img src="{{ item?.url }}" alt="" style="height: 50px; width:50px;"></td>
-                <td>{{ item?.description }}</td>
+              <tr *ngFor="let item of users" style="text-align: center">
+                <td>{{ item?.name }}</td>
+                <td>{{ item?.email}}</td>
+                <td>
+                  <span *ngIf="item.role==1" class="badge badge-primary">Admin</span>
+                  <span *ngIf="item.role==2" class="badge badge-danger">User</span>
+            </td>
                 <td>
                   <a
                     class="text-warning"
                     style="cursor: pointer"
-                    (click)="editBlog(item.id)"
+                    (click)="editUser(item.id)"
                     ><fa-icon [icon]="edit"></fa-icon></a
                   >
                   <a
                     class="text-danger ml-1"
                     style="cursor: pointer"
-                    (click)="deleteBlog(item.id)"
+                    (click)="deleteUser(item.id)"
                     ><fa-icon [icon]="delete"></fa-icon></a
                   >
                 </td>

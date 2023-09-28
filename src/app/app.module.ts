@@ -27,6 +27,8 @@ import { OrderComponent } from './user/order/order.component';
 import { ListOrderComponent } from './order/list-order/list-order.component';
 import { ListOrderDetailComponent } from './order/list-order-detail/list-order-detail.component';
 import { OrderDetailComponent } from './user/order-detail/order-detail.component';
+import { UsersComponent } from './users/users.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -50,15 +52,17 @@ import { OrderDetailComponent } from './user/order-detail/order-detail.component
     OrderComponent,
     ListOrderComponent,
     ListOrderDetailComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    UsersComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FontAwesomeModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    FontAwesomeModule
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -17,13 +17,13 @@ export class ProductService {
   getProducts() {
     return this.http.get<Product[]>(this.apiURL + 'list-products');
   }
-  addProduct(data: Product) {
+  addProduct(data: any) {
     return this.http.post(this.apiURL + 'add-product', data);
   }
   getProductById(id: number) {
     return this.http.get<Product>(this.apiURL + 'edit-product/' + id);
   }
-  updateProduct(data: Product) {
+  updateProduct(data: any) {
     return this.http.post(this.apiURL + 'update-product', data);
   }
   deleteProductById(id: number) {

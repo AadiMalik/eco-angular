@@ -1,0 +1,31 @@
+<div class="signup">
+  <div class="register">
+    <div class="form-container">
+      <form [formGroup]="profileForm" (ngSubmit)="updateProfile(user?.id)" class="register-form">
+        <h2>Profile</h2>
+        <div class="row">
+            <div class="col-md-12">
+                  <div class="form-group">
+                        <input type="text" id="name" formControlName="name" value="{{user?.name}}" class="form-control" name="name" placeholder="Full Name" />
+                        <p *ngIf="profileForm.controls['name'].invalid && profileForm.controls['name'].touched" style="color: red">Name filed required!</p>
+                  </div>
+            </div>
+            <div class="col-md-12">
+                  <div class="form-group">
+                        <input type="email" id="email" class="form-control" value="{{user?.email}}" disabled name="email" placeholder="Email"/>
+                  </div>
+            </div>
+            <div class="col-md-12">
+                  <div class="form-group">
+                        <input type="password" class="form-control" id="password" name="password" formControlName="password" placeholder="Enter Password" minlength="4" maxlength="20" />
+                        <p *ngIf="profileForm.controls['password'].invalid && profileForm.controls['password'].touched" style="color: red">Password filed required!</p>
+                  </div>
+            </div>
+            <div class="col-md-12">
+                  <button type="submit" class="form-control btn btn-primary">Update</button>
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,8 @@ import { Blog } from 'src/app/data-type/blog';
 import { Category } from 'src/app/data-type/category';
 import { BlogService } from 'src/app/service/blog/blog.service';
 import { CategoryService } from 'src/app/service/category/category.service';
-import { faTrash, faEdit, faSave } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit, faSave, faRefresh } from '@fortawesome/free-solid-svg-icons';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-list-blog',
@@ -11,6 +12,13 @@ import { faTrash, faEdit, faSave } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./list-blog.component.css'],
 })
 export class ListBlogComponent {
+  blogForm = new FormGroup({
+    id: new FormControl(0),
+    title: new FormControl('', Validators.required),
+    category_id: new FormControl('', Validators.required),
+    url: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
+  });
   categories: undefined | Category[];
   blogs: undefined | Blog[];
   blog: undefined | Blog;
@@ -19,6 +27,9 @@ export class ListBlogComponent {
   delete = faTrash;
   edit = faEdit;
   save = faSave;
+  reset = faRefresh;
+  button = 'Save';
+  heading = 'Create User';
   constructor(
     private blog_service: BlogService,
     private category_service: CategoryService
@@ -38,9 +49,16 @@ export class ListBlogComponent {
       this.blogs = response;
     });
   }
-  saveBlog(data: Blog): void {
-    if (data.id > 0) {
-      this.blog_service.updateBlog(data).subscribe(
+  saveBlog(id: number | undefined): void {
+    let obj = {
+      id: id,
+      title: this.blogForm.get('title')?.value,
+      category_id: this.blogForm.get('category_id')?.value,
+      url: this.blogForm.get('url')?.value,
+      description: this.blogForm.get('description')?.value,
+    };
+    if (obj && obj.id != undefined) {
+      this.blog_service.updateBlog(obj).subscribe(
         (data) => {
           this.message = 'Blog Update Successfully!';
           this.listBlogs();
@@ -50,7 +68,7 @@ export class ListBlogComponent {
         }
       );
     } else {
-      this.blog_service.addBlog(data).subscribe(
+      this.blog_service.addBlog(obj).subscribe(
         (data) => {
           this.message = 'Blog Save Successfully!';
           this.listBlogs();
@@ -60,6 +78,7 @@ export class ListBlogComponent {
         }
       );
     }
+    this.resetForm();
     setTimeout(() => {
       this.message = undefined;
       this.errorMessage = undefined;
@@ -69,6 +88,8 @@ export class ListBlogComponent {
     this.blog_service.getBlogById(id).subscribe((response) => {
       console.log(response);
       this.blog = response;
+      this.heading = 'Update Blog';
+      this.button = 'Update';
     });
   }
   deleteBlog(id: number) {
@@ -81,5 +102,10 @@ export class ListBlogComponent {
     setTimeout(() => {
       this.message = undefined;
     }, 2000);
+  }
+  resetForm() {
+    this.heading = 'Create Blog';
+    this.button = 'Save';
+    this.blogForm.reset(this.blogForm.value);
   }
 }
