@@ -21,6 +21,8 @@ import { ListOrderDetailComponent } from './order/list-order-detail/list-order-d
 import { OrderDetailComponent } from './user/order-detail/order-detail.component';
 import { UsersComponent } from './users/users.component';
 import { ProfileComponent } from './profile/profile.component';
+import { adminGuard } from './admin.guard';
+import { userGuard } from './user.guard';
 
 const routes: Routes = [
   {
@@ -38,22 +40,22 @@ const routes: Routes = [
   {
     path: 'user/cart',
     component: CartComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, userGuard],
   },
   {
     path: 'user/checkout',
     component: CheckoutComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, userGuard],
   },
   {
     path: 'user/orders',
     component: OrderComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, userGuard],
   },
   {
     path: 'user/orders/:query',
     component: OrderDetailComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, userGuard],
   },
   {
     path: 'user/blog',
@@ -82,37 +84,37 @@ const routes: Routes = [
   {
     path: 'admin/home',
     component: HomeComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, adminGuard],
   },
   {
     path: 'admin/list-users',
     component: UsersComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, adminGuard],
   },
   {
     path: 'admin/list-category',
     component: ListCategoryComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, adminGuard],
   },
   {
     path: 'admin/list-products',
     component: ListProductComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, adminGuard],
   },
   {
     path: 'admin/list-blogs',
     component: ListBlogComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, adminGuard],
   },
   {
     path: 'admin/list-orders',
     component: ListOrderComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, adminGuard],
   },
   {
     path: 'admin/list-orders/:query',
     component: ListOrderDetailComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, adminGuard],
   },
 ];
 

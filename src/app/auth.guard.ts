@@ -4,10 +4,11 @@ import { inject } from '@angular/core';
 
 export const authGuard: CanActivateFn = (route, state) => {
   const oauthService: AuthService = inject(AuthService);
-
-  if (localStorage.getItem('auth-user')) {
+  const user = localStorage.getItem('auth-user');
+  if (user) {
     return true;
+  } else {
+    oauthService.redirectLogin();
+    return false;
   }
-  oauthService.redirectLogin();
-  return false;
 };
